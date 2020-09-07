@@ -14,4 +14,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/info', 'AppInfoController@get')->name('get.app.info');
+Route::get('/users', 'UserController@get')->name('get.users');
