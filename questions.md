@@ -25,16 +25,15 @@ class Test {
 $a = '1';
 $b = &$a;
 $b = "2$b";
-
-echo $a;
-echo $b;
 ```
 
 ### What will be the output of each of the statements below?
 
 ```php
-var_dump(0123 == 123);
-var_dump('123' == 123);
+echo 0123 == 123 ? 'True' : 'False';
+
+echo ('123' == 123);
+
 var_dump('0123' === 123);
 ```
 
