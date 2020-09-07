@@ -7,6 +7,17 @@ foreach($arrayNumbers as $arrayNumber){
 }
 ```
 
+### What can we call to return `"Josh"` from the Test class
+```php
+class Test {
+  protected $user1 = 'James';
+  protected $user2 = 'Josh';
+  public function get($user) {
+    return $this->$user;
+  }
+}
+```
+
 ### What will be the values of $a and $b after the code below is executed?
 
 ```php
