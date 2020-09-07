@@ -7,7 +7,7 @@ foreach($arrayNumbers as $arrayNumber){
 }
 ```
 
-#### Answer 
+#### Answer
 `234`
 
 ### What can we call to return `"Josh"` from the Test class
@@ -15,6 +15,7 @@ foreach($arrayNumbers as $arrayNumber){
 class Test {
   protected $user1 = 'James';
   protected $user2 = 'Josh';
+
   public function get($user) {
     return $this->$user;
   }
@@ -32,27 +33,26 @@ echo $test->get('user2');
 $a = '1';
 $b = &$a;
 $b = "2$b";
-
-echo $a;
-echo $b;
 ```
-#### Answer 
+#### Answer
 `Both 21`
 
 ### What will be the output of each of the statements below?
 
 ```php
-var_dump(0123 == 123);
-var_dump('123' == 123);
+echo 0123 == 123 ? 'True' : 'False';
+
+echo ('123' == 123);
+
 var_dump('0123' === 123);
 ```
+
 #### Answer
 
-```php
-var_dump(0123 == 123); (bool false)
-var_dump('123' == 123); (bool true)
-var_dump('0123' === 123); (bool false)
-```
+`False`
+`1`
+`bool(false)`
+
 
 ### What does the follow code echo?
 
@@ -61,10 +61,10 @@ $a = "PHP";
 $a = $a + 1;
 echo $a;
 ```
-#### Answer 
+#### Answer
 `1`
 
 ### What are Traits?
 
-#### Answer 
+#### Answer
 Traits are a mechanism that provides some of the reuse advantages of multiple inheritance in languages like PHP where multiple inheritance is not supported. Traits enable developers to reuse combinations of methods from different class hierarchies.
