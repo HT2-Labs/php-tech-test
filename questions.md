@@ -10,21 +10,28 @@ foreach($arrayNumbers as $arrayNumber){
 #### Answer
 `234`
 
-### What can we call to return `"Josh"` from the Test class
+### What can we call to return `"Joe Bloggs"` from the User class
 ```php
-class Test {
-  protected $user1 = 'James';
-  protected $user2 = 'Josh';
+class User2 {
+  protected $fname;
+  protected $lname;
 
-  public function get($user) {
-    return $this->$user;
+  public function __construct($fname, $lname) {
+    $this->fname = $fname;
+    $this->lname = $lname;
+  }
+
+  public function get($field) {
+    return $this->$field;
   }
 }
+
+$user = new User('Joe', 'Bloggs')
 ```
 
 #### Answer
 ```php
-echo $test->get('user2');
+echo $user->get('fname') . " " . $user->get('lname');
 ```
 
 ### What will be the values of $a and $b after the code below is executed?
