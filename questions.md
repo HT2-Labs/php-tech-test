@@ -12,6 +12,7 @@ foreach($arrayNumbers as $arrayNumber){
 class Test {
   protected $user1 = 'James';
   protected $user2 = 'Josh';
+
   public function get($user) {
     return $this->$user;
   }
