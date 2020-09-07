@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Errors;
 use Tests\TestCase;
 
 class UserRouteTest extends TestCase
@@ -25,10 +26,9 @@ class UserRouteTest extends TestCase
   public function testGetUserReturns10UsersByDefault()
   {
     $response = $this->get(route('get.users'));
-    $responseContent = json_decode($response->getContent());
 
-    $this->assertEquals(10, count($responseContent));
     $this->assertJson($response->getContent());
+    $this->assertEquals(10, count($response->decodeResponseJson()), 'Expected only 10 results');
   }
 
   /**
@@ -40,10 +40,14 @@ class UserRouteTest extends TestCase
   {
     $limit = 15;
     $response = $this->get(route('get.users', ['limit' => $limit]));
-    $responseContent = json_decode($response->getContent());
+    $responseContent = $response->decodeResponseJson();
+    $firstResult = $responseContent[0];
+    $lastResult = $responseContent[count($responseContent)-1];
 
-    $this->assertEquals($limit, count($responseContent));
-    $this->assertJson($response->getContent());
+    $this->assertJson($response->getContent(), 'Expected JSON back from API');
+    $this->assertEquals(1, $firstResult['id'], 'Expected first result to have ID 1');
+    $this->assertEquals(15, $lastResult['id'], 'Expected last result to have ID 15');
+    $this->assertEquals($limit, count($responseContent), 'Expected 15 results back');
   }
 
   /**
@@ -56,11 +60,11 @@ class UserRouteTest extends TestCase
     $limit = 15;
     $offset = 15;
     $response = $this->get(route('get.users', ['limit' => $limit, 'offset' => $offset]));
-    $responseContent = $response->getContent();
+    $responseContent = $response->decodeResponseJson();
+    $firstResult = $responseContent[0];
 
-    //look at ids
-    $this->assertEquals($this->next15InDB, $responseContent);
-    $this->assertJson($response->getContent());
+    $this->assertJson($response->getContent(), 'Expected JSON back from API');
+    $this->assertEquals(16, $firstResult['id']);
   }
 
   /**
@@ -70,14 +74,14 @@ class UserRouteTest extends TestCase
    */
   public function testGetUserLimitsWithAMaxOf50UsersReturn500ErrorMessage()
   {
-    $message = 'Limit cannot be more than 50';
+    $message = Errors::ERROR_MAX_LIMIT_MESSAGE;
     $limit = 60;
     $offset = 0;
     $response = $this->get(route('get.users', ['limit' => $limit, 'offset' => $offset]));
-    $responseContent = json_decode($response->getContent());
-    $this->assertEquals(500, $response->status());
-    $this->assertEquals($message, $responseContent->message);
-  }
+    $responseContent = $response->decodeResponseJson();
 
-  private $next15InDB = '[{"id":16,"name":"Dr. Kayden Upton","email":"jayde.pfannerstill@example.net","email_verified_at":"2020-09-04T12:47:19.000000Z","created_at":"2020-09-04T12:47:19.000000Z","updated_at":"2020-09-04T12:47:19.000000Z"},{"id":17,"name":"Louvenia Walsh","email":"hugh79@example.com","email_verified_at":"2020-09-04T12:47:19.000000Z","created_at":"2020-09-04T12:47:19.000000Z","updated_at":"2020-09-04T12:47:19.000000Z"},{"id":18,"name":"Judah Wunsch","email":"jacklyn42@example.org","email_verified_at":"2020-09-04T12:47:19.000000Z","created_at":"2020-09-04T12:47:19.000000Z","updated_at":"2020-09-04T12:47:19.000000Z"},{"id":19,"name":"Eli Lindgren","email":"diego.waelchi@example.org","email_verified_at":"2020-09-04T12:47:19.000000Z","created_at":"2020-09-04T12:47:19.000000Z","updated_at":"2020-09-04T12:47:19.000000Z"},{"id":20,"name":"Hunter Konopelski","email":"dale45@example.com","email_verified_at":"2020-09-04T12:47:19.000000Z","created_at":"2020-09-04T12:47:19.000000Z","updated_at":"2020-09-04T12:47:19.000000Z"},{"id":21,"name":"Mr. Salvatore Bogisich Sr.","email":"alba27@example.org","email_verified_at":"2020-09-04T12:47:19.000000Z","created_at":"2020-09-04T12:47:19.000000Z","updated_at":"2020-09-04T12:47:19.000000Z"},{"id":22,"name":"Leopold Leannon","email":"alda.rogahn@example.net","email_verified_at":"2020-09-04T12:47:19.000000Z","created_at":"2020-09-04T12:47:19.000000Z","updated_at":"2020-09-04T12:47:19.000000Z"},{"id":23,"name":"Prof. Carmen Witting III","email":"bruen.bo@example.net","email_verified_at":"2020-09-04T12:47:19.000000Z","created_at":"2020-09-04T12:47:19.000000Z","updated_at":"2020-09-04T12:47:19.000000Z"},{"id":24,"name":"Lura Hermiston","email":"russel.goldner@example.org","email_verified_at":"2020-09-04T12:47:19.000000Z","created_at":"2020-09-04T12:47:19.000000Z","updated_at":"2020-09-04T12:47:19.000000Z"},{"id":25,"name":"Miss Pearline Blick","email":"ned.ondricka@example.net","email_verified_at":"2020-09-04T12:47:19.000000Z","created_at":"2020-09-04T12:47:19.000000Z","updated_at":"2020-09-04T12:47:19.000000Z"},{"id":26,"name":"Ms. Cathy Kutch PhD","email":"duane89@example.com","email_verified_at":"2020-09-04T12:47:19.000000Z","created_at":"2020-09-04T12:47:19.000000Z","updated_at":"2020-09-04T12:47:19.000000Z"},{"id":27,"name":"Otha Hauck","email":"green.edd@example.com","email_verified_at":"2020-09-04T12:47:19.000000Z","created_at":"2020-09-04T12:47:19.000000Z","updated_at":"2020-09-04T12:47:19.000000Z"},{"id":28,"name":"Prof. Kaden Turner","email":"lind.cortney@example.org","email_verified_at":"2020-09-04T12:47:19.000000Z","created_at":"2020-09-04T12:47:19.000000Z","updated_at":"2020-09-04T12:47:19.000000Z"},{"id":29,"name":"Kevon Brown","email":"eino54@example.com","email_verified_at":"2020-09-04T12:47:19.000000Z","created_at":"2020-09-04T12:47:19.000000Z","updated_at":"2020-09-04T12:47:19.000000Z"},{"id":30,"name":"Lacy Littel","email":"aboyle@example.net","email_verified_at":"2020-09-04T12:47:19.000000Z","created_at":"2020-09-04T12:47:19.000000Z","updated_at":"2020-09-04T12:47:19.000000Z"}]';
+    $this->assertJson($response->getContent(), 'Expected JSON back from API');
+    $this->assertEquals(500, $response->status(), 'Expected back status code 500');
+    $this->assertEquals($message, $responseContent['message'], 'Wrong message sent back from API');
+  }
 }
