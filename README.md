@@ -1,5 +1,5 @@
 # Instructions
-Here we have a Laravel framework (v7). This has 1 model and 1 database table called `users` there are 200 users already seeded in the database. Modify the `get` function in the [UserController.php](./usr/local/curatr/techtest/test/app/Http/Controllers/UserController.php) file to pass as many tests as possible. The tests are included in the appliaction [here](/usr/local/curatr/techtest/test/tests/Route/UserRouteTest.php). The goal of the `get` function is to set up pagination ability for the GET User route, this is just a simple API to get the users from the database.
+Here we have a Laravel framework (v7). This has 1 model and 1 database table called `users` there are 200 users already seeded in the database. Modify the `get` function in the [UserController.php](/app/Http/Controllers/UserController.php) file to pass as many tests as possible. The tests are included in the appliaction [here](/tests/Route/UserRouteTest.php). The goal of the `get` function is to set up pagination ability for the GET User route, this is just a simple API to get the users from the database.
 
 ## Rules
 - You have 30 minutes to complete the challenge.
