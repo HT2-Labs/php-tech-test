@@ -12,7 +12,7 @@ foreach($arrayNumbers as $arrayNumber){
 
 ### What can we call to return `"Joe Bloggs"` from the User class
 ```php
-class User2 {
+class User {
   protected $fname;
   protected $lname;
 
