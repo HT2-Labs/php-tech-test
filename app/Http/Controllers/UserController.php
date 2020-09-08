@@ -9,6 +9,7 @@ class UserController extends BaseController
 {
   public function get()
   {
-    return User::get();
+    // $users = User::get();
+    return response('', 204);
   }
 }
