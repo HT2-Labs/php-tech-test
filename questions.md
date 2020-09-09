@@ -26,14 +26,6 @@ class User {
 $user = new User('Joe', 'Bloggs')
 ```
 
-### What will be the values of $a and $b after the code below is executed?
-
-```php
-$a = '1';
-$b = &$a;
-$b = "2$b";
-```
-
 ### What will be the output of each of the statements below?
 
 ```php
@@ -50,6 +42,16 @@ var_dump('0123' === 123);
 $a = "PHP";
 $a = $a + 1;
 echo $a;
+```
+
+### Bonus
+
+### What will be the values of $a and $b after the code below is executed?
+
+```php
+$a = '1';
+$b = &$a;
+$b = "2$b";
 ```
 
 ### What are Traits?
