@@ -29,21 +29,6 @@ class User {
 $user = new User('Joe', 'Bloggs')
 ```
 
-#### Answer
-```php
-echo $user->get('fname') . " " . $user->get('lname');
-```
-
-### What will be the values of $a and $b after the code below is executed?
-
-```php
-$a = '1';
-$b = &$a;
-$b = "2$b";
-```
-#### Answer
-`Both 21`
-
 ### What will be the output of each of the statements below?
 
 ```php
@@ -70,6 +55,19 @@ echo $a;
 ```
 #### Answer
 `1`
+
+### Bonus
+
+### What will be the values of $a and $b after the code below is executed?
+
+```php
+$a = '1';
+$b = &$a;
+$b = "2$b";
+```
+
+#### Answer
+`Both 21`
 
 ### What are Traits?
 
