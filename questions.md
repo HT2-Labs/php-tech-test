@@ -30,7 +30,7 @@ $user = new User('Joe', 'Bloggs');
 ```
 
 #### Answer
-```
+```php
 echo $user->get('fname') . " " . $user->get('lname');
 ```
 
