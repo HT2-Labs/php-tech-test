@@ -14,4 +14,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/users', 'UserController@get')->name('get.users');
+Route::get('/users/limit/{limit}/offset/{offset}', 'UserController@get')->name('get.users');
