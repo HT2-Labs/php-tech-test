@@ -26,7 +26,12 @@ class User {
   }
 }
 
-$user = new User('Joe', 'Bloggs')
+$user = new User('Joe', 'Bloggs');
+```
+
+#### Answer
+```
+echo $user->get('fname') . " " . $user->get('lname');
 ```
 
 ### What will be the output of each of the statements below?
