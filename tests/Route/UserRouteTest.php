@@ -14,8 +14,9 @@ class UserRouteTest extends TestCase
    */
   public function testGetUserReturns200()
   {
-    $response = $this->get(route('get.users'));
-    $this->assertEquals(200, $response->status());
+    $limit = 200;
+    $response = $this->get(route('get.users', ['limit' => $limit]));
+    $this->assertEquals($limit, $response->status());
   }
 
   /**
