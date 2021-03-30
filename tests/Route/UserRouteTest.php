@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Route;
 
 use App\Errors;
 use Tests\TestCase;
